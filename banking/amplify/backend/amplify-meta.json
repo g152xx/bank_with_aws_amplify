@@ -1,0 +1,53 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "banking-20181015125408-authRole",
+			"UnauthRoleArn": "arn:aws:iam::897671419443:role/banking-20181015125408-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::897671419443:role/banking-20181015125408-authRole",
+			"Region": "us-east-2",
+			"DeploymentBucketName": "banking-20181015125408-deployment",
+			"UnauthRoleName": "banking-20181015125408-unauthRole",
+			"StackName": "banking-20181015125408",
+			"StackId": "arn:aws:cloudformation:us-east-2:897671419443:stack/banking-20181015125408/6adfc430-d079-11e8-af74-0a5f3eca4dfa"
+		}
+	},
+	"auth": {
+		"cognito4fa7635a": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/banking-20181015125408-deployment/amplify-cfn-templates/auth/cognito4fa7635a-cloudformation-template.yml",
+				"logicalId": "authcognito4fa7635a"
+			},
+			"lastPushTimeStamp": "2018-10-15T14:50:38.518Z",
+			"output": {
+				"AppClientSecret": "20g4nopmgm6ioolbit6mhg21s68s8fua0qhev6hrskbiddvoeha",
+				"UserPoolId": "us-east-2_SNevDEyxS",
+				"AppClientIDWeb": "410rt8eedb6pcd95kf02fbtnt8",
+				"AppClientID": "6qlk2n9nrqms5qhic2o0520s7b",
+				"IdentityPoolId": "us-east-2:7cec72ef-0f06-4293-9aea-5dd34f26b890",
+				"IdentityPoolName": "cognito4fa7635a_identitypool_4fa7635a",
+				"UserPoolName": "cognito4fa7635a_userpool_4fa7635a"
+			},
+			"lastPushDirHash": "r6I6u2b7Ae0IzGRr7lqDY6PCejQ="
+		}
+	},
+	"api": {
+		"banking": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "API_KEY",
+				"GraphQLAPIIdOutput": "4iwtgjtl2rgh3iz3f7jiccv6qq",
+				"GraphQLAPIEndpointOutput": "https://77ibsouvozghpkziy5huirug2i.appsync-api.us-east-2.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-pqthy66anjb47meia4zfv72a2y"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/banking-20181015125408-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apibanking"
+			},
+			"lastPushTimeStamp": "2018-10-15T14:50:41.767Z",
+			"lastPushDirHash": "NyiDX3N5juA9mdzny7ekh5EqDJA="
+		}
+	}
+}

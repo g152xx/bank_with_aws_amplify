@@ -1,0 +1,166 @@
+type Lender {
+  id: ID!
+  name: String!
+  deposit: String
+  borrowers(filter: ModelBorrowerFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelBorrowerConnection
+}
+
+type Borrower {
+  id: ID!
+  name: String!
+  picture: String
+  credit: String
+  paymentDate: String
+  lenderName: Lender
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelLenderConnection {
+  items: [Lender]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelLenderFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  deposit: ModelStringFilterInput
+  and: [ModelLenderFilterInput]
+  or: [ModelLenderFilterInput]
+  not: ModelLenderFilterInput
+}
+
+type Query {
+  getLender(id: ID!): Lender
+  listLenders(filter: ModelLenderFilterInput, limit: Int, nextToken: String): ModelLenderConnection
+  getBorrower(id: ID!): Borrower
+  listBorrowers(filter: ModelBorrowerFilterInput, limit: Int, nextToken: String): ModelBorrowerConnection
+}
+
+input CreateLenderInput {
+  name: String!
+  deposit: String
+}
+
+input UpdateLenderInput {
+  id: ID!
+  name: String
+  deposit: String
+}
+
+input DeleteLenderInput {
+  id: ID
+}
+
+type Mutation {
+  createLender(input: CreateLenderInput!): Lender
+  updateLender(input: UpdateLenderInput!): Lender
+  deleteLender(input: DeleteLenderInput!): Lender
+  createBorrower(input: CreateBorrowerInput!): Borrower
+  updateBorrower(input: UpdateBorrowerInput!): Borrower
+  deleteBorrower(input: DeleteBorrowerInput!): Borrower
+}
+
+type Subscription {
+  onCreateLender: Lender @aws_subscribe(mutations: ["createLender"])
+  onUpdateLender: Lender @aws_subscribe(mutations: ["updateLender"])
+  onDeleteLender: Lender @aws_subscribe(mutations: ["deleteLender"])
+  onCreateBorrower: Borrower @aws_subscribe(mutations: ["createBorrower"])
+  onUpdateBorrower: Borrower @aws_subscribe(mutations: ["updateBorrower"])
+  onDeleteBorrower: Borrower @aws_subscribe(mutations: ["deleteBorrower"])
+}
+
+type ModelBorrowerConnection {
+  items: [Borrower]
+  nextToken: String
+}
+
+input ModelBorrowerFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  picture: ModelStringFilterInput
+  credit: ModelStringFilterInput
+  paymentDate: ModelStringFilterInput
+  and: [ModelBorrowerFilterInput]
+  or: [ModelBorrowerFilterInput]
+  not: ModelBorrowerFilterInput
+}
+
+input CreateBorrowerInput {
+  name: String!
+  picture: String
+  credit: String
+  paymentDate: String
+  borrowerLenderNameId: ID
+}
+
+input UpdateBorrowerInput {
+  id: ID!
+  name: String
+  picture: String
+  credit: String
+  paymentDate: String
+  borrowerLenderNameId: ID
+}
+
+input DeleteBorrowerInput {
+  id: ID
+}

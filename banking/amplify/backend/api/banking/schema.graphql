@@ -1,0 +1,16 @@
+type Lender @model {
+  id: ID!
+  name: String!
+	deposit: String
+	borrowers: [Borrower] @connection(name: "Lender")
+}
+
+type Borrower @model {
+  id: ID!
+  name: String!
+	picture: String
+	credit: String
+	paymentDate: String
+	lenderName: Lender @connection(name: "Lender")
+}
+
