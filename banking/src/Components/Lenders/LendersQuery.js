@@ -39,7 +39,7 @@ class LendersQuery extends  Component{
             <div>
                 {
                     this.state.alllenders.map((item)=>(
-                        <p key={item.id}>{item.name}</p>
+                        <p key={item.id}>{item.name}- {item.deposit}</p>
                     ))
                 }
             </div>
