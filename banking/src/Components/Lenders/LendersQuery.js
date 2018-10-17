@@ -34,7 +34,15 @@ const createNewLender = `
     }
   }
 `
-
+const SubscribeToLenders=`
+subscription{
+    onCreateLender{
+      id
+      name
+      deposit
+    }
+  }
+`
 
 class LendersQuery extends  Component{
     state={
@@ -47,6 +55,17 @@ class LendersQuery extends  Component{
             alllenders: lenderData.data.listLenders.items
             
         })
+        API.graphql(
+            graphqlOperation(SubscribeToLenders)
+        ).subscribe({
+            next: (eventData) => {
+                const lender= eventData.value.data.onCreateLender;
+                const alllenders = [...this.state.alllenders.filter(i=>{
+                    return ((i.name !==lender.name) && (i.deposit !== lender.deposit))
+                }), lender]
+                this.setState({alllenders})
+            }
+        });
     }
 
 
