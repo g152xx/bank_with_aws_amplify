@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import LendersQuery from './Lenders/LendersQuery'
-import BorrowersQuery from './Borrowers/BorrowersQuery'
 
 
-import { withAuthenticator } from 'aws-amplify-react'
 
 class Home extends Component {
 
@@ -20,7 +18,6 @@ class Home extends Component {
                       <Col col="12" className="mb-4 mb-xl-0 text-center mt-3">
                        <div> 
                          <LendersQuery/>
-                          <BorrowersQuery />
                         </div>
                       </Col>
                     </Row>
@@ -34,4 +31,4 @@ class Home extends Component {
   }
 }
 
-export default withAuthenticator(Home);
+export default Home;

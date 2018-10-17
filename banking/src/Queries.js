@@ -41,8 +41,8 @@ query{
 
 
 const createNewBorrower = gql`
-  mutation createBorrower($name: String!, $picture:String, $credit:String,$paymentDate: String, $borrowerLenderNameId:ID! ) {
-    createPost(input: {
+  mutation ($name: String!, $picture:String, $credit:String,$paymentDate: String, $borrowerLenderNameId:ID! ) {
+    createBorrower(input: {
       name: $name, picture:$picture, credit:$credit, paymentDate:$paymentDate, borrowerLenderNameId:$borrowerLenderNameId
     }) {
       id
