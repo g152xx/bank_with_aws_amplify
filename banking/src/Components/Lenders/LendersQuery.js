@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { API, graphqlOperation} from 'aws-amplify'
 
-const query =`
+const LenderMutation =`
 query {
     listLenders{
         items {
@@ -29,18 +29,22 @@ class LendersQuery extends  Component{
     }
 
     async componentDidMount(){
-        const data= await API.graphql(graphqlOperation(query))
+        const lender= await API.graphql(graphqlOperation(LenderMutation));
         this.setState({
-            alllenders: data.data.listLenders.items
+            alllenders: lender.data.listLenders.items
+            
         })
     }
     render(){
         return(
             <div>
+
+                <h1>Lenders Query</h1>
                 {
-                    this.state.alllenders.map((item)=>(
-                        <p key={item.id}>{item.name}- {item.deposit}</p>
-                    ))
+                    this.state.alllenders.map((item)=>(<div>
+                        
+                        <p key={item.id}>{item.name} has lendered {item.deposit} </p>
+                   </div>))
                 }
             </div>
         )
