@@ -7,7 +7,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'simple-line-icons/css/simple-line-icons.css';
 import './scss/style.css'
 
-import Header from './Components/Header'
 
 class App extends Component {
   state={
@@ -36,7 +35,6 @@ class App extends Component {
                     </Nav>
                 </Collapse>
             </Navbar>
-            <Header />
           <Main />
       </div>
     );

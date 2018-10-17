@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
-
 import { API, graphqlOperation} from 'aws-amplify'
 
-const borrowerMutation =`
-query {
-    listBorrowers{
-        items {
-          id
-          name
-          picture
-          credit
-          paymentDate
-          lenderName{
-            id
-            name
-            deposit
-          }
-        }
+const getAllBorrowers =`
+query{
+  listBorrowers{
+    items{
+      id
+	  name
+      picture
+      credit
+      paymentDate
+      lenderName{
+        id
+        name
+        deposit
+        
+      }
     }
   }
-`
+}`
+
 
 class BorrowersQuery extends  Component{
     state={
@@ -27,8 +27,8 @@ class BorrowersQuery extends  Component{
     }
 
     async componentDidMount(){
-        const borrower= await API.graphql(graphqlOperation(borrowerMutation))
-        console.log(borrower)
+        const borrower= await API.graphql(graphqlOperation(getAllBorrowers))
+        //console.log(borrower)
         this.setState({
             allBorrowers: borrower.data.listBorrowers.items
         })
